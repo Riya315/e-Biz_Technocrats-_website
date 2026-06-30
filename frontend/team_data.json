@@ -1,0 +1,56 @@
+[
+    {
+        "name": "Sanjeev Goyal",
+        "title": "Director",
+        "image": "assets/images/team/1696339569.jpg",
+        "linkedin": "http://linkedin.com/in/sanjeev-goyal-founder"
+    },
+    {
+        "name": "Kiranjeet Namdhari",
+        "title": "VP-HR",
+        "image": "assets/images/team/1735906526.jpeg",
+        "linkedin": "https://www.linkedin.com/in/kiranjeet-namdhari"
+    },
+    {
+        "name": "Pooja Bakshi",
+        "title": "Manager",
+        "image": "assets/images/team/1691640207.jpeg",
+        "linkedin": "linkedin.com/in/pooja-bakshi-69498a198"
+    },
+    {
+        "name": "Hina Shinde",
+        "title": "IT-Project Coordinator",
+        "image": "assets/images/team/1735906564.jpeg",
+        "linkedin": "https://www.linkedin.com/in/hina-shinde-b22175186"
+    },
+    {
+        "name": "Chanchal Verma",
+        "title": "Project Coordinator",
+        "image": "assets/images/team/1735906661.jpeg",
+        "linkedin": "http://linkedin.com/in/chantech-undefined-49a187263"
+    },
+    {
+        "name": "Saksham Khule",
+        "title": "Associate",
+        "image": "assets/images/team/1702473330.jpg",
+        "linkedin": "https://www.linkedin.com/in/saksham-khule-3ab842249?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+    },
+    {
+        "name": "Pranjal Mittal",
+        "title": "Full Stack Developer",
+        "image": "assets/images/team/1759749655.jpeg",
+        "linkedin": "https://www.linkedin.com/in/pranjal-mittal-0500801b2/"
+    },
+    {
+        "name": "Saurbh Poddar",
+        "title": "Php Developer",
+        "image": "assets/images/team/1774068863.jpeg",
+        "linkedin": "https://www.linkedin.com/in/saurbh-poddar"
+    },
+    {
+        "name": "Dheeraj Pal",
+        "title": "Jr Android Developer",
+        "image": "assets/images/team/1759987753.jpeg",
+        "linkedin": "https://www.linkedin.com/in/dheeraj-pal-653a46266?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+    }
+]

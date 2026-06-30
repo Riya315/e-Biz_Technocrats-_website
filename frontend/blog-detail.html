@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Article Detail - e-Biz Technocrats</title>
+    <!-- FontAwesome & Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css?v=3.7">
+    <style>
+        .blog-detail-container {
+            padding: 80px 0;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        .blog-detail-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        @media (max-width: 991px) {
+            .blog-detail-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        .blog-detail-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow-sm);
+        }
+        .blog-meta-header {
+            margin-bottom: 25px;
+        }
+        .blog-cat-badge {
+            background: var(--grad-orange-purple);
+            color: #ffffff;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .blog-detail-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            line-height: 1.25;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+        .blog-detail-date {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        .blog-detail-img-wrapper {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .blog-detail-img {
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+        .blog-article-body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+        .blog-article-body p {
+            margin-bottom: 20px;
+        }
+        .blog-article-body h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin: 30px 0 15px 0;
+            font-weight: 600;
+        }
+        .blog-article-body ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        .blog-article-body ul li {
+            margin-bottom: 10px;
+            list-style-type: disc;
+        }
+        /* Sidebar Styles */
+        .blog-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .sidebar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+        }
+        .sidebar-card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 118, 20, 0.2);
+            color: var(--text-primary);
+        }
+        .related-blog-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        .related-blog-item:last-child {
+            margin-bottom: 0;
+        }
+        .related-blog-thumb {
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+        }
+        .related-blog-info h5 {
+            font-size: 0.95rem;
+            line-height: 1.3;
+            margin-bottom: 5px;
+        }
+        .related-blog-info h5 a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+        .related-blog-info h5 a:hover {
+            color: var(--color-orange);
+        }
+        .related-blog-date {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        /* Comment Form */
+        .comment-form-group {
+            margin-bottom: 15px;
+        }
+        .comment-form-input {
+            width: 100%;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+        .comment-form-input:focus {
+            outline: none;
+            border-color: var(--color-orange);
+        }
+    </style>
+</head>
+<body class="light-theme">
+
+    <!-- Header / Navbar -->
+    <header class="main-header" id="mainHeader">
+        <div class="container nav-container">
+            <a href="index.html" class="logo" id="logoLink">
+                <img src="assets/images/ebiz_logo.png" alt="e-Biz Technocrats Logo" class="brand-logo-img">
+            </a>
+
+            <!-- Header Action Elements -->
+            <div class="header-action-wrap">
+                <!-- Mobile Navigation Menu Toggle -->
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Company <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; margin-left: 4px;"></i></a>
+                                                <ul class="dropdown-menu">
+                            <li><a href="about-us.html"><i class="fa-solid fa-users" style="width:16px;margin-right:8px;opacity:0.7"></i>Leadership &amp; Team</a></li>
+                            <li><a href="what-we-do.html"><i class="fa-solid fa-briefcase" style="width:16px;margin-right:8px;opacity:0.7"></i>What We Do / Services</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="partners.html">Partners & Tech</a></li>
+                    <li><a href="clients-work.html">Clients & Work</a></li>
+                    <li><a href="blogs.html" class="active">Resources</a></li>
+                    <li><a href="index.html#contact" class="btn btn-nav">Contact Us</a></li>
+                    <li class="search-item">
+                        <button class="search-toggle-btn desktop-search-btn" aria-label="Open Search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </li>
+                                        <li class="mobile-search-nav-item">
+                        <button class="search-toggle-btn mobile-nav-search-btn" aria-label="Open Search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span class="mobile-search-label">Search</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">
+                            <i class="fa-solid fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Detail Content Area -->
+    <section class="blog-detail-container">
+        <div class="container">
+            <div class="blog-detail-layout">
+                <!-- Main Article -->
+                <article class="blog-detail-content">
+                    <div class="blog-meta-header">
+                        <span class="blog-cat-badge" id="blogCat">Technology</span>
+                        <h1 class="blog-detail-title" id="blogTitle">Loading Title...</h1>
+                        <span class="blog-detail-date" id="blogDate"><i class="fa-regular fa-calendar"></i> Loading Date...</span>
+                    </div>
+
+                    <div class="blog-detail-img-wrapper">
+                        <img src="" alt="Blog Banner" class="blog-detail-img" id="blogImg">
+                    </div>
+
+                    <div class="blog-article-body" id="blogBody">
+                        Loading content...
+                    </div>
+                </article>
+
+                <!-- Sidebar -->
+                <aside class="blog-sidebar">
+                    <!-- Related Blogs -->
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-card-title">Related Posts</h4>
+                        <div id="relatedBlogsContainer">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Contact/Support desk sidebar card -->
+                    <div class="sidebar-card">
+                        <h4 class="sidebar-card-title">Need Software Solutions?</h4>
+                        <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 20px;">
+                            Speak to our technical experts today and kickstart your digital transformation.
+                        </p>
+                        <a href="index.html#contact" class="btn btn-primary" style="display: block; text-align: center;">Get Quote <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-main">
+            <!-- Col 1: Brand & Certification -->
+            <div class="footer-col brand-col">
+                <a href="index.html" class="logo footer-logo">
+                    <img src="assets/images/ebiz_logo.png" alt="e-Biz Technocrats Logo" class="brand-logo-img">
+                </a>
+                <p class="footer-brand-desc">
+                    Custom software engineering, app design, cloud networking architectures, and enterprise business automation since 2003.
+                </p>
+                <div class="certifications">
+                    <div class="cert-badge">
+                        <i class="fa-solid fa-award"></i>
+                        <span>ISO 9001:2015</span>
+                    </div>
+                    <div class="cert-badge">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>ISO 27001:2022</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Col 2: Services Quick Links -->
+            <div class="footer-col">
+                <h3>Our Offerings</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html#services">Software Development</a></li>
+                    <li><a href="index.html#services">IT Solutions</a></li>
+                    <li><a href="index.html#services">Digital Marketing</a></li>
+                    <li><a href="index.html#services">Sourcing &amp; Hiring</a></li>
+                    <li><a href="index.html#services">Education Services</a></li>
+                    <li><a href="index.html#services">IT Infrastructure Setup</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Company Quick Links -->
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#case-studies">Clients &amp; Work</a></li>
+                    <li><a href="index.html#blogs">Blog Insights</a></li>
+                    <li><a href="index.html#contact">Apply for Job / Careers</a></li>
+                    <li><a href="index.html#contact">Contact Us Today</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Trust & Widgets -->
+            <div class="footer-col widgets-col">
+                <h3>Trust Ratings</h3>
+                <div class="trust-widget-item">
+                    <div class="widget-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <span class="widget-score">4.8 / 5</span>
+                    </div>
+                    <span class="widget-label"><i class="fa-brands fa-google"></i> Google Customer Reviews</span>
+                </div>
+                <div class="trust-widget-item">
+                    <div class="widget-stars font-clutch">
+                        <i class="fa-solid fa-star"></i>
+                        <span class="widget-score">97 / 100</span>
+                    </div>
+                    <span class="widget-label"><i class="fa-solid fa-circle-check"></i> Clutch Verified Partner</span>
+                </div>
+                <div class="social-medias">
+                    <a href="https://www.facebook.com/ebiztechnocrats" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/ebiztechnocrats" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/ebiztpl/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/ebiztechnocrats/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-iso-row">
+            <div class="container">
+                <div class="iso-badges-row">
+                    <img src="assets/images/iso-logo.png" alt="ISO 9001:2015 Certified" class="iso-badge-img">
+                    <div class="iso-text">
+                        <strong>ISO 9001:2015 &amp; ISO 27001:2022 Certified</strong>
+                        <span>Internationally recognized for Quality Management &amp; Information Security</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-content">
+                <p class="copyright">Copyrights &copy; 2026 e-Biz Technocrats Pvt. Ltd. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+                    <a href="index.html#careers">Careers</a>
+                    <a href="index.html#contact">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Widgets -->
+    <a href="https://api.whatsapp.com/send?phone=918962733774&text=Hello%20e-Biz" class="whatsapp-float-btn" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <button class="back-to-top-btn" id="backToTop" aria-label="Back to Top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- JS Logic -->
+    <script src="index.js?v=3.1"></script>
+    <script>
+        // Blog Data Store
+        const blogData = {
+            blockchain: {
+                title: "The Decentralized Powerhouse of Blockchain",
+                category: "Technology",
+                date: "May 24, 2026",
+                image: "assets/images/alliances_07.png",
+                content: `
+                    <p>Blockchain technology is reshaping our digital landscape, introducing a decentralized and distributed ledger system that facilitates secure and transparent transactions, eliminating the need for intermediaries. Its versatile applications span various sectors, including finance, supply chain management, and healthcare.</p>
+                    
+                    <p>One of the defining features of blockchain is its decentralization, as it operates without a central authority, relying instead on a network of computers, or nodes, to maintain its integrity. This inherent decentralization makes blockchain exceptionally resilient to censorship and fraudulent activities.</p>
+                    
+                    <p>Another hallmark of blockchain is its transparency. Every transaction conducted on the blockchain is publicly recorded and accessible to all, greatly reducing the likelihood of data tampering or fraudulent actions.</p>
+                    
+                    <p>Blockchain technology has the capacity to transform various sectors significantly. In finance, for instance, it can foster the creation of decentralized exchanges and peer-to-peer lending platforms, democratizing financial services worldwide.</p>
+                    
+                    <h4>Real-World Applications of Blockchain</h4>
+                    <ul>
+                        <li><strong>Decentralized Finance (DeFi):</strong> DeFi has emerged as a financial ecosystem built atop blockchain technology, enabling users to access financial services directly, bypassing traditional intermediaries like banks.</li>
+                        <li><strong>Non-Fungible Tokens (NFTs):</strong> NFTs are unique digital assets stored on a blockchain, representing ownership of digital items such as art, music, and in-game assets.</li>
+                        <li><strong>Central Bank Digital Currencies (CBDCs):</strong> Central banks are exploring blockchain technology to develop digital versions of traditional fiat currencies, offering more efficient and secure forms of digital currency.</li>
+                    </ul>
+                    
+                    <h4>What Does This Mean for IT Companies?</h4>
+                    <p>For IT companies, blockchain technology presents significant opportunities. They can leverage blockchain to create new products and services, as well as enhance the efficiency and security of their existing offerings.</p>
+                    <p>For instance, IT companies can develop blockchain-based applications for DeFi, NFTs, and CBDCs. Additionally, blockchain can bolster the security of supply chains and provide a secure platform for data storage and sharing.</p>
+                `
+            },
+            linkedin: {
+                title: "Crafting an Impressive LinkedIn Profile for Job Seekers",
+                category: "Careers",
+                date: "June 02, 2026",
+                image: "assets/images/alliances_15.png",
+                content: `
+                    <p>LinkedIn has emerged as a crucial resource in the current digital era for both professionals and job seekers. It provides enormous chances for networking and career growth, serving as your 24/7 digital resume that can be discovered by recruiters worldwide.</p>
+                    
+                    <p>To stand out in the crowded job market, your profile needs to be complete, clear, and highly engaging. A professional profile picture, a compelling headline that highlights your value, and an authentic summary of your career journey are essential elements of success.</p>
+                    
+                    <h4>Key Strategies to Optimize Your LinkedIn Profile</h4>
+                    <ul>
+                        <li><strong>Write a Compelling Headline:</strong> Move beyond simple job titles. Use your headline to showcase your expertise, key skills, and the value you bring (e.g., "Full Stack Developer | React & Node.js Specialist | Helping brands build scalable web apps").</li>
+                        <li><strong>Craft a Story-driven Summary:</strong> Use the "About" section to tell your story. Share your passion, your key achievements, and what motivates you professionally.</li>
+                        <li><strong>Optimize for Keywords:</strong> Recruiters search LinkedIn using specific keywords. Ensure your skills, experience, and headline contain keywords relevant to your target roles.</li>
+                        <li><strong>Gather Recommendations:</strong> Social proof is highly powerful. Ask former colleagues, managers, or clients to write brief recommendations highlighting your strengths.</li>
+                    </ul>
+                    
+                    <h4>Building Your Network</h4>
+                    <p>Once your profile is optimized, focus on building meaningful connections. Share industry insights, comment on relevant posts, and connect with peers and recruiters in your field. Active engagement shows you are passionate and informed about your industry.</p>
+                `
+            },
+            ai: {
+                title: "How AI is Shaping the Future of Software Development",
+                category: "Artificial Intelligence",
+                date: "June 12, 2026",
+                image: "assets/images/alliances_10.png",
+                content: `
+                    <p>Artificial Intelligence is no longer just a futuristic concept; it is actively reshaping how software is designed, written, and deployed today. Discover how machine learning integrations and automated code generators are enabling developers to build resilient software faster than ever.</p>
+                    
+                    <p>From automated code suggestions to intelligent bug detection and deployment pipelines, AI-driven tools are augmenting human intelligence and allowing engineering teams to focus on design and architecture rather than repetitive coding tasks.</p>
+                    
+                    <h4>The Role of AI in the Software Lifecycle</h4>
+                    <ul>
+                        <li><strong>Intelligent Code Completion:</strong> Tools powered by large language models suggest code completions in real-time, speeding up the development process and helping developers learn new APIs quickly.</li>
+                        <li><strong>Automated Testing & QA:</strong> AI models can generate comprehensive test suites and simulate user flows to catch bugs early in the release cycle, improving software reliability.</li>
+                        <li><strong>Predictive Maintenance:</strong> By analyzing server logs and application telemetry, AI can predict potential system bottlenecks or memory leaks before they affect end-users.</li>
+                    </ul>
+                    
+                    <h4>A Collaborative Future</h4>
+                    <p>The future of development is collaborative, with AI acting as an assistant rather than a replacement. By automating syntax checkouts, routine boilerplate creation, and unit test generation, developers can spend more time solving complex business logic and designing premium user experiences.</p>
+                `
+            }
+        };
+
+        // Render Blog Content based on URL
+        function renderBlogDetail() {
+            const urlParams = new URLSearchParams(window.location.search);
+            let blogId = urlParams.get('id');
+            
+            // Default to blockchain if invalid
+            if (!blogId || !blogData[blogId]) {
+                blogId = 'blockchain';
+            }
+            
+            const post = blogData[blogId];
+            
+            // Set main elements
+            document.getElementById('blogCat').innerText = post.category;
+            document.getElementById('blogTitle').innerText = post.title;
+            document.getElementById('blogDate').innerHTML = `<i class="fa-regular fa-calendar"></i> ${post.date}`;
+            document.getElementById('blogImg').src = post.image;
+            document.getElementById('blogImg').alt = post.title;
+            document.getElementById('blogBody').innerHTML = post.content;
+            
+            // Set dynamic browser window title
+            document.title = `${post.title} - e-Biz Technocrats Blog`;
+            
+            // Render Related Blogs
+            const relatedContainer = document.getElementById('relatedBlogsContainer');
+            relatedContainer.innerHTML = '';
+            
+            Object.keys(blogData).forEach(key => {
+                if (key !== blogId) {
+                    const relatedPost = blogData[key];
+                    const itemHtml = `
+                        <div class="related-blog-item">
+                            <img src="${relatedPost.image}" alt="${relatedPost.title}" class="related-blog-thumb">
+                            <div class="related-blog-info">
+                                <h5><a href="blog-detail.html?id=${key}">${relatedPost.title}</a></h5>
+                                <span class="related-blog-date">${relatedPost.date}</span>
+                            </div>
+                        </div>
+                    `;
+                    relatedContainer.innerHTML += itemHtml;
+                }
+            });
+        }
+        
+        window.addEventListener('DOMContentLoaded', renderBlogDetail);
+    </script>
+
+    <!-- Search Overlay Modal -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-overlay-bg" id="searchOverlayBg"></div>
+        <div class="search-container">
+            <div class="search-header">
+                <h3>Search e-Biz Website</h3>
+                <button class="search-close-btn" id="searchCloseBtn" aria-label="Close Search">&times;</button>
+            </div>
+            <div class="search-input-box">
+                <i class="fa-solid fa-magnifying-glass search-bar-icon"></i>
+                <input type="text" id="searchInput" placeholder="Search services, articles, resources..." autocomplete="off">
+                <button class="search-clear-btn" id="searchClearBtn" style="display: none;">&times;</button>
+            </div>
+            <div class="search-results" id="searchResults">
+                <div class="search-status">Type to search services, pages, or articles...</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

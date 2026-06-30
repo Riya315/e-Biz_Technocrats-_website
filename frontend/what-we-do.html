@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services & Offerings | e-Biz Technocrats Pvt. Ltd.</title>
+    
+    <!-- Meta details to prevent AI-generated feel -->
+    <meta name="description" content="Explore custom software development, IT solutions, SaaS applications, cloud infrastructure, digital marketing and business consultancy services at e-Biz Technocrats.">
+    <meta name="author" content="e-Biz Technocrats Pvt. Ltd.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    
+    <!-- FontAwesome (Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Shared stylesheet -->
+    <link rel="stylesheet" href="index.css?v=3.7">
+</head>
+<body class="services-page">
+
+    <!-- Header / Navbar -->
+    <header class="main-header" id="mainHeader">
+        <div class="container nav-container">
+            <a href="index.html" class="logo" id="logoLink">
+                <img src="assets/images/ebiz_logo.png" alt="e-Biz Technocrats Logo" class="brand-logo-img">
+            </a>
+
+            <!-- Header Action Elements -->
+            <div class="header-action-wrap">
+                <!-- Mobile Navigation Menu Toggle -->
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="active dropdown-toggle">Company <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; margin-left: 4px;"></i></a>
+                                                <ul class="dropdown-menu">
+                            <li><a href="about-us.html"><i class="fa-solid fa-users" style="width:16px;margin-right:8px;opacity:0.7"></i>Leadership &amp; Team</a></li>
+                            <li><a href="what-we-do.html"><i class="fa-solid fa-briefcase" style="width:16px;margin-right:8px;opacity:0.7"></i>What We Do / Services</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="partners.html">Partners & Tech</a></li>
+                    <li><a href="clients-work.html">Clients & Work</a></li>
+                    <li><a href="blogs.html">Resources</a></li>
+                    <li><a href="index.html#contact" class="btn btn-nav">Contact Us</a></li>
+                    <li class="search-item">
+                        <button class="search-toggle-btn desktop-search-btn" aria-label="Open Search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </li>
+                                        <li class="mobile-search-nav-item">
+                        <button class="search-toggle-btn mobile-nav-search-btn" aria-label="Open Search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span class="mobile-search-label">Search</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">
+                            <i class="fa-solid fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Services Page Banner -->
+    <section class="services-banner">
+        <div class="container services-banner-content">
+            <h1>Our Services & Solutions</h1>
+            <p>Empowering global enterprises with cutting-edge IT systems, custom software engineering, cloud architectures, and digital growth strategies since 2003.</p>
+        </div>
+    </section>
+
+    <!-- Services Tabbed Layout -->
+    <section class="services-page-section">
+        <div class="container">
+            <div class="services-tabs-container">
+                <!-- Left: Tab Buttons Menu -->
+                <div class="services-tab-menu">
+                    <button class="services-tab-btn active" onclick="switchTab(event, 'tab-it')">
+                        <i class="fa-solid fa-laptop-code" style="color: #e60067;"></i> IT Services & Solutions
+                    </button>
+                    <button class="services-tab-btn" onclick="switchTab(event, 'tab-web')">
+                        <i class="fa-solid fa-globe" style="color: #7b00e6;"></i> Web Services & Solutions
+                    </button>
+                    <button class="services-tab-btn" onclick="switchTab(event, 'tab-cloud')">
+                        <i class="fa-solid fa-cloud" style="color: #009de2;"></i> Cloud Solutions
+                    </button>
+                    <button class="services-tab-btn" onclick="switchTab(event, 'tab-saas')">
+                        <i class="fa-solid fa-cubes" style="color: #24ab4c;"></i> SaaS Applications
+                    </button>
+                    <button class="services-tab-btn" onclick="switchTab(event, 'tab-thirdparty')">
+                        <i class="fa-solid fa-puzzle-piece" style="color: #f77b25;"></i> Third Party Integration
+                    </button>
+                    <button class="services-tab-btn" onclick="switchTab(event, 'tab-spec')">
+                        <i class="fa-solid fa-gears" style="color: #e41a21;"></i> Specialized Software
+                    </button>
+                    <button class="services-tab-btn" onclick="switchTab(event, 'tab-telephony')">
+                        <i class="fa-solid fa-phone-volume" style="color: #ff8c00;"></i> Telephony Solutions
+                    </button>
+                    <button class="services-tab-btn" onclick="switchTab(event, 'tab-marketing')">
+                        <i class="fa-solid fa-bullhorn" style="color: #00b3ff;"></i> PR & Digital Branding
+                    </button>
+                    <button class="services-tab-btn" onclick="switchTab(event, 'tab-outsourcing')">
+                        <i class="fa-solid fa-people-arrows" style="color: #8b5cf6;"></i> Outsourcing Services
+                    </button>
+                    <button class="services-tab-btn" onclick="switchTab(event, 'tab-consultancy')">
+                        <i class="fa-solid fa-chart-line" style="color: #25d366;"></i> Business Consultancy
+                    </button>
+                </div>
+
+                <!-- Right: Tab Content Display -->
+                <div class="services-tab-content-wrapper">
+                    
+                    <!-- 1. IT Services & Solutions -->
+                    <div class="services-tab-pane active" id="tab-it">
+                        <div class="services-pane-grid">
+                            <div class="services-pane-info">
+                                <h3>IT Solutions & Services</h3>
+                                <p>Our team of experienced professionals offers comprehensive IT solutions, including expert consulting, network solutions, cybersecurity, and efficient cloud management, ensuring your business stays ahead in the digital age.</p>
+                                <div class="offerings-heading">Offerings</div>
+                                <div class="services-offerings-grid">
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Web Design & Development</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Software Development</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Mobile App Development</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> API Development</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Testing Services</div>
+                                </div>
+                            </div>
+                            <img src="assets/images/IT Solution & Services1.png" alt="IT Solutions" class="services-pane-image">
+                        </div>
+                    </div>
+
+                    <!-- 2. Web Services & Solutions -->
+                    <div class="services-tab-pane" id="tab-web">
+                        <div class="services-pane-grid">
+                            <div class="services-pane-info">
+                                <h3>Web Services & Solutions</h3>
+                                <p>Our team of experienced professionals offers a comprehensive suite of web services and solutions, catering to both small businesses and large corporations, ensuring high-quality services that exceed expectations.</p>
+                                <div class="offerings-heading">Offerings</div>
+                                <div class="services-offerings-grid">
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Custom Web Design</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> E-commerce Solutions</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Corporate Portals</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> CMS Integration</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Responsive Layouts</div>
+                                </div>
+                            </div>
+                            <img src="assets/images/Web Services & Solution.png" alt="Web Services" class="services-pane-image">
+                        </div>
+                    </div>
+
+                    <!-- 3. Cloud Solutions -->
+                    <div class="services-tab-pane" id="tab-cloud">
+                        <div class="services-pane-grid">
+                            <div class="services-pane-info">
+                                <h3>Cloud Solutions</h3>
+                                <p>A cloud solution is a powerful technology that revolutionizes the way businesses operate. With cloud solutions, you can access your critical resources from anywhere, collaborate seamlessly, and adapt to changing demands with ease. Our Cloud solutions offer scalable and flexible computing resources in a secure online environment. They streamline operations, reduce costs, and provide easy access to data from anywhere, making businesses more agile and efficient.</p>
+                                <div class="offerings-heading">Offerings</div>
+                                <div class="services-offerings-grid">
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Analytics as a Service (AaaS)</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Backend as a Service (BaaS)</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Busy on Cloud Services</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Tally on Cloud Services</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Desktop as a Service (DaaS)</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> ERP on Cloud Services</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Infrastructure as a Service (IaaS)</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Platform as a Service (PaaS)</div>
+                                </div>
+                            </div>
+                            <img src="assets/images/cloud solutions.png" alt="Cloud Solutions" class="services-pane-image">
+                        </div>
+                    </div>
+
+                    <!-- 4. SaaS Applications -->
+                    <div class="services-tab-pane" id="tab-saas">
+                        <div class="services-pane-grid">
+                            <div class="services-pane-info">
+                                <h3>SaaS Applications</h3>
+                                <p>SaaS, or Software as a Service, has revolutionized the way businesses operate. With SaaS applications, you can access powerful software tools and services via the cloud, eliminating the need for costly installations and maintenance. Whether you're managing customer relationships, streamlining your HR processes, or collaborating with remote teams, SaaS applications provide flexibility, scalability, and efficiency.</p>
+                                <div class="offerings-heading">Offerings</div>
+                                <div class="services-offerings-grid">
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Yardstikk (Assessment tool)</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Konnect (Project tracking)</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Online Admission Module</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Custom SaaS Deployments</div>
+                                </div>
+                            </div>
+                            <img src="assets/images/SaaS Applications.png" alt="SaaS Applications" class="services-pane-image">
+                        </div>
+                    </div>
+
+                    <!-- 5. Third Party Integration -->
+                    <div class="services-tab-pane" id="tab-thirdparty">
+                        <div class="services-pane-grid">
+                            <div class="services-pane-info">
+                                <h3>Third Party Application Integrations</h3>
+                                <p>There are many third-party applications available on the market, and we have carefully selected those that we think will make the most of the web application development process. Third-party applications are important to many business managements, facilitating transaction safety, customer support, and system compatibility.</p>
+                                <div class="offerings-heading">Supported Integrations</div>
+                                <div class="services-offerings-grid">
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Tata Integrations</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Sab Paisa Payment Portal</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Rediff Services</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Adobe Integrations</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> PayU Payment Gateway</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> MSG91 SMS Services</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> NxtGen Storage Cloud</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Resellerclub Domain Integration</div>
+                                </div>
+                            </div>
+                            <img src="assets/images/e biz image section 1-04.png" alt="Third Party Applications" class="services-pane-image">
+                        </div>
+                    </div>
+
+                    <!-- 6. Specialized Software -->
+                    <div class="services-tab-pane" id="tab-spec">
+                        <div class="services-pane-grid">
+                            <div class="services-pane-info">
+                                <h3>Specialized Software Solutions</h3>
+                                <p>When companies adopt new technologies or business processes, they face many problems in terms of existing applications and complex systems. Our industry-specific software experts can solve all your complex integration and implementation problems, including design, testing, debugging, and deployment.</p>
+                                <div class="offerings-heading">Offerings</div>
+                                <div class="services-offerings-grid">
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> University Management Solution</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Retail Industry Portals</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Startup / Business Consultancy</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Food & Beverage Restaurant POS</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Online Seminar & Meeting Solutions</div>
+                                </div>
+                            </div>
+                            <img src="assets/images/e biz image section 1-09.png" alt="Specialized Software" class="services-pane-image">
+                        </div>
+                    </div>
+
+                    <!-- 7. Telephony Solutions -->
+                    <div class="services-tab-pane" id="tab-telephony">
+                        <div class="services-pane-grid">
+                            <div class="services-pane-info">
+                                <h3>Telephony Solutions</h3>
+                                <p>A comprehensive telephony solution is the backbone of modern communication. Our advanced system seamlessly connects your business with the world, ensuring crystal-clear voice quality and reliable connectivity. Stay connected anytime, anywhere, and take your communication channels to the next level.</p>
+                                <div class="offerings-heading">Offerings</div>
+                                <div class="services-offerings-grid">
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Transaction & Promotion SMS/OTP</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Missed Call Automation</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Toll Free No. Solutions</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Virtual / Cloud Telephony</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> WhatsApp API Integration</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Virtual No. Solution</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> IVR Interactive Voice Response</div>
+                                </div>
+                            </div>
+                            <img src="assets/images/e biz image section 1-05.png" alt="Telephony Solutions" class="services-pane-image">
+                        </div>
+                    </div>
+
+                    <!-- 8. PR & Digital Branding -->
+                    <div class="services-tab-pane" id="tab-marketing">
+                        <div class="services-pane-grid">
+                            <div class="services-pane-info">
+                                <h3>PR Consultant & Services</h3>
+                                <p>Our role in reputation management is to protect and enhance the client's public image through activities such as monitoring negative media, managing damage during the crisis, and promoting a positive image of their customers. When a company faces criticism or other negative publicity, our group of professionals helps minimize the damage and restore its reputation.</p>
+                                <div class="offerings-heading">Offerings</div>
+                                <div class="services-offerings-grid">
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> SEO/SMM Services</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Content Development</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Brand Development</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Political Consultancy</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> PR Services</div>
+                                </div>
+                            </div>
+                            <img src="assets/images/PR Consultant & Services-02.png" alt="PR Consultancy" class="services-pane-image">
+                        </div>
+                        <div class="services-pane-grid" style="margin-top: 48px;">
+                            <img src="assets/images/e biz image section-04.png" alt="Digital Branding" class="services-pane-image">
+                            <div class="services-pane-info">
+                                <h3>Digital Branding</h3>
+                                <p>Brand Identity & Strategy (Brand Name & Messaging, Consultation & Research, Positioning, Logo Design, Illustration, Visual Design System, Brand Guidelines, Digital Reputation Management) Brand Experience Design (Packaging Design, Product Research & Consultation, Branded Environments, Marketing Communications, Print Collateral, Web Design & Development, Digital Media).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Outsourcing Services -->
+                    <div class="services-tab-pane" id="tab-outsourcing">
+                        <div class="services-pane-grid">
+                            <div class="services-pane-info">
+                                <h3>Outsourcing Service Solution</h3>
+                                <p>Outsourcing is a modern digital business that thrives on providing fast and reliable services. We make the role profitable and the business smooth with a focus on quality and safety. Once our business consultant understands your company well, we move your business into the evaluation phase to determine what needs to be changed.</p>
+                                <div class="offerings-heading">Offerings</div>
+                                <div class="services-offerings-grid">
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Call Center Services</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Back Office Processes</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Virtual Assistant & Reception</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Virtual Office Services</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Accounting & HR Services</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> Sales Process Outsourcing</div>
+                                    <div class="services-offering-item"><i class="fa-solid fa-circle-check"></i> IT Resources Services</div>
+                                </div>
+                            </div>
+                            <img src="assets/images/e biz image section 1-08.png" alt="Outsourcing Services" class="services-pane-image">
+                        </div>
+                    </div>
+
+                    <!-- 10. Business Consultancy -->
+                    <div class="services-tab-pane" id="tab-consultancy">
+                        <div class="consultancy-intro">
+                            <h3>Business Consultancy & Incubation</h3>
+                            <p>We analyze the business and develop solutions while helping the company achieve its goals. We will monitor your current business model and determine the best ways to achieve the same results at the lowest cost and time.</p>
+                        </div>
+                        
+                        <!-- 11 Consultancy Cards Grid from Original Page -->
+                        <div class="consultancy-subgrid">
+                            <div class="consultancy-card">
+                                <img src="assets/images/img-01.jpg" alt="Digital Branding" class="consultancy-card-img">
+                                <div class="consultancy-card-body">
+                                    <h4>Digital Branding</h4>
+                                    <p>Brand Identity & Strategy, messaging, logo design, guidelines, branded environment, web experience, and package structure design.</p>
+                                </div>
+                            </div>
+                            <div class="consultancy-card">
+                                <img src="assets/images/Digital PR.png" alt="Digital PR" class="consultancy-card-img">
+                                <div class="consultancy-card-body">
+                                    <h4>Digital PR</h4>
+                                    <p>Global Multi Lingual PR, niche media placements, media relations, influencer marketing campaigns, and press relations strategy.</p>
+                                </div>
+                            </div>
+                            <div class="consultancy-card">
+                                <img src="assets/images/img-3.jpg" alt="Digital Marketing" class="consultancy-card-img">
+                                <div class="consultancy-card-body">
+                                    <h4>Digital Marketing</h4>
+                                    <p>Social Media Marketing (SMM), Search Engine Optimization (SEO), Email/SMS marketing, and content strategies.</p>
+                                </div>
+                            </div>
+                            <div class="consultancy-card">
+                                <img src="assets/images/img-4.jpg" alt="Video Production" class="consultancy-card-img">
+                                <div class="consultancy-card-body">
+                                    <h4>Video Production</h4>
+                                    <p>Live streams, brand films, commercial ads, promotional walkthroughs, documentaries, testimonials, and explainer animations.</p>
+                                </div>
+                            </div>
+                            <div class="consultancy-card">
+                                <img src="assets/images/img-5.jpg" alt="Packaging Design" class="consultancy-card-img">
+                                <div class="consultancy-card-body">
+                                    <h4>Packaging Design</h4>
+                                    <p>Product project brief analysis, channels optimization, learn from competition, and package design hierarchy validation.</p>
+                                </div>
+                            </div>
+                            <div class="consultancy-card">
+                                <img src="assets/images/product design.png" alt="Product Design" class="consultancy-card-img">
+                                <div class="consultancy-card-body">
+                                    <h4>Product Design</h4>
+                                    <p>Idea generation, concept screening, system integration, rapid concept prototyping, testing and commercialization.</p>
+                                </div>
+                            </div>
+                            <div class="consultancy-card">
+                                <img src="assets/images/img-7.jpg" alt="Incubation" class="consultancy-card-img">
+                                <div class="consultancy-card-body">
+                                    <h4>Incubation</h4>
+                                    <p>Fund scheme suggestions, legal business setup planning, go-to-market strategies, and initial product establishment.</p>
+                                </div>
+                            </div>
+                            <div class="consultancy-card">
+                                <img src="assets/images/IT Services.png" alt="IT Services" class="consultancy-card-img">
+                                <div class="consultancy-card-body">
+                                    <h4>IT Services</h4>
+                                    <p>User flow mapping, wireframing, content layout strategy, design thinking workshops, responsive layouts, and UI/UX design.</p>
+                                </div>
+                            </div>
+                            <div class="consultancy-card">
+                                <img src="assets/images/img-9.jpg" alt="Business Automation" class="consultancy-card-img">
+                                <div class="consultancy-card-body">
+                                    <h4>Process Standardization</h4>
+                                    <p>Standard Operating Procedures (SOPs), Six Sigma practices, CRM setups, HRM systems, and automated supply chains.</p>
+                                </div>
+                            </div>
+                            <div class="consultancy-card">
+                                <img src="assets/images/img-10.jpg" alt="Strategy Development" class="consultancy-card-img">
+                                <div class="consultancy-card-body">
+                                    <h4>Strategy & Planning</h4>
+                                    <p>Tech stack audit, hiring guidelines, digital roadmap planning, product roadmap alignment, and compliance verification.</p>
+                                </div>
+                            </div>
+                            <div class="consultancy-card">
+                                <img src="assets/images/Interactive Solutions.png" alt="Interactive Solutions" class="consultancy-card-img">
+                                <div class="consultancy-card-body">
+                                    <h4>Interactive Solutions</h4>
+                                    <p>Virtual Reality (VR), Augmented Reality (AR) product design, and custom 3D asset modelling.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-main">
+            <!-- Col 1: Brand & Certification -->
+            <div class="footer-col brand-col">
+                <a href="index.html" class="logo footer-logo">
+                    <img src="assets/images/ebiz_logo.png" alt="e-Biz Technocrats Logo" class="brand-logo-img">
+                </a>
+                <p class="footer-brand-desc">
+                    Custom software engineering, app design, cloud networking architectures, and enterprise business automation since 2003.
+                </p>
+                <div class="certifications">
+                    <div class="cert-badge">
+                        <i class="fa-solid fa-award"></i>
+                        <span>ISO 9001:2015</span>
+                    </div>
+                    <div class="cert-badge">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>ISO 27001:2022</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Col 2: Services Quick Links -->
+            <div class="footer-col">
+                <h3>Our Offerings</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html#services">Software Development</a></li>
+                    <li><a href="index.html#services">IT Solutions</a></li>
+                    <li><a href="index.html#services">Digital Marketing</a></li>
+                    <li><a href="index.html#services">Sourcing &amp; Hiring</a></li>
+                    <li><a href="index.html#services">Education Services</a></li>
+                    <li><a href="index.html#services">IT Infrastructure Setup</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Company Quick Links -->
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="index.html#case-studies">Clients &amp; Work</a></li>
+                    <li><a href="index.html#blogs">Blog Insights</a></li>
+                    <li><a href="index.html#contact">Apply for Job / Careers</a></li>
+                    <li><a href="index.html#contact">Contact Us Today</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Trust & Widgets -->
+            <div class="footer-col widgets-col">
+                <h3>Trust Ratings</h3>
+                <div class="trust-widget-item">
+                    <div class="widget-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <span class="widget-score">4.8 / 5</span>
+                    </div>
+                    <span class="widget-label"><i class="fa-brands fa-google"></i> Google Customer Reviews</span>
+                </div>
+                <div class="trust-widget-item">
+                    <div class="widget-stars font-clutch">
+                        <i class="fa-solid fa-star"></i>
+                        <span class="widget-score">97 / 100</span>
+                    </div>
+                    <span class="widget-label"><i class="fa-solid fa-circle-check"></i> Clutch Verified Partner</span>
+                </div>
+                <div class="social-medias">
+                    <a href="https://www.facebook.com/ebiztechnocrats" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/ebiztechnocrats" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/ebiztpl/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/ebiztechnocrats/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-iso-row">
+            <div class="container">
+                <div class="iso-badges-row">
+                    <img src="assets/images/iso-logo.png" alt="ISO 9001:2015 Certified" class="iso-badge-img">
+                    <div class="iso-text">
+                        <strong>ISO 9001:2015 &amp; ISO 27001:2022 Certified</strong>
+                        <span>Internationally recognized for Quality Management &amp; Information Security</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-content">
+                <p class="copyright">Copyrights &copy; 2026 e-Biz Technocrats Pvt. Ltd. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+                    <a href="index.html#careers">Careers</a>
+                    <a href="index.html#contact">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top & WhatsApp Floaters -->
+    <a href="https://wa.me/919425113944" target="_blank" class="whatsapp-floater" aria-label="Chat with e-Biz on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <button class="back-to-top" id="backToTop" aria-label="Scroll back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Client Support Portal -->
+    <div class="ai-chat-container" id="aiChatContainer">
+        <button class="ai-chat-toggle" id="aiChatToggle" aria-label="Open Support Chat">
+            <i class="fa-solid fa-headset"></i>
+            <span class="ai-badge">LIVE</span>
+        </button>
+        <div class="ai-chat-window" id="aiChatWindow">
+            <div class="ai-chat-header">
+                <div class="ai-chat-header-info">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <div>
+                        <h4 style="margin: 0; font-size: 0.95rem; font-weight: 700;">Support Desk</h4>
+                        <span style="font-size: 0.7rem; opacity: 0.8;">Online Support Portal</span>
+                    </div>
+                </div>
+                <button class="ai-chat-close" id="aiChatClose">&times;</button>
+            </div>
+            <div class="ai-chat-messages" id="aiChatMessages">
+                <div class="ai-message bot">
+                    Hello! Welcome to e-Biz Customer Support. How can we assist you with our services and solutions today?
+                </div>
+            </div>
+            <div class="ai-chat-suggestions" id="aiChatSuggestions">
+                <button class="ai-suggest-btn" data-question="services">What services do you offer?</button>
+                <button class="ai-suggest-btn" data-question="clients">Who are your clients?</button>
+                <button class="ai-suggest-btn" data-question="calculator">How much will my project cost?</button>
+                <button class="ai-suggest-btn" data-question="contact">How can I contact you?</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Javascript for Tab Switching and Menu Interaction -->
+    <script>
+        // Tab switching logic
+        function switchTab(evt, tabId) {
+            // Get all tab panes and hide them
+            const tabPanes = document.querySelectorAll('.services-tab-pane');
+            tabPanes.forEach(pane => pane.classList.remove('active'));
+
+            // Get all tab buttons and remove active class
+            const tabButtons = document.querySelectorAll('.services-tab-btn');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+
+            // Show active pane and set active button state
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+            
+            // Scroll tab content wrapper into view smoothly if on mobile
+            if (window.innerWidth <= 1024) {
+                document.querySelector('.services-tab-content-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    // Activate tab based on URL hash on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        const hash = window.location.hash;
+        if (hash) {
+            const tabId = hash.substring(1);
+            const btn = document.querySelector(`.services-tab-btn[onclick*="${tabId}"]`);
+            if (btn) {
+                btn.click();
+            }
+        }
+    });
+
+    </script>
+     <script src="index.js?v=3.1"></script>
+
+    <!-- Search Overlay Modal -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-overlay-bg" id="searchOverlayBg"></div>
+        <div class="search-container">
+            <div class="search-header">
+                <h3>Search e-Biz Website</h3>
+                <button class="search-close-btn" id="searchCloseBtn" aria-label="Close Search">&times;</button>
+            </div>
+            <div class="search-input-box">
+                <i class="fa-solid fa-magnifying-glass search-bar-icon"></i>
+                <input type="text" id="searchInput" placeholder="Search services, articles, resources..." autocomplete="off">
+                <button class="search-clear-btn" id="searchClearBtn" style="display: none;">&times;</button>
+            </div>
+            <div class="search-results" id="searchResults">
+                <div class="search-status">Type to search services, pages, or articles...</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

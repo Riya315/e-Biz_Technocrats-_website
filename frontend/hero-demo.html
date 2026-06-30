@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Section Demo (Ultimate Effects)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --btn-magenta: #a21caf;
+            --btn-magenta-hover: #86198f;
+            --primary-blue: #2563eb;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow: hidden;
+            background: #f8fafc;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 6vh;
+            text-align: center;
+            background: radial-gradient(circle at 50% -10%, #60a5fa 0%, #bfdbfe 35%, #f8fafc 80%);
+            overflow: hidden;
+            box-sizing: border-box;
+            perspective: 1000px;
+        }
+
+        /* 3D GRID FLOOR */
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: -50%; right: -50%;
+            height: 50%;
+            background-image: 
+                linear-gradient(to right, rgba(37, 99, 235, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform-origin: bottom center;
+            transform: perspective(500px) rotateX(70deg) scale(2);
+            animation: gridMove 15s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+            -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+            mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+        }
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100px; }
+        }
+
+        /* NEW: NETWORK CANVAS */
+        #network-canvas {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* GLOW EFFECT */
+        .cursor-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 60%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            transition: opacity 0.3s;
+            opacity: 0;
+            mix-blend-mode: overlay;
+        }
+
+        /* TEXT ELEMENTS */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            border: 1px solid #e2e8f0;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 2vh;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            animation: slideDown 1s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 2;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .badge:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
+        }
+        .badge:hover i {
+            animation: glitch 0.3s infinite;
+        }
+        @keyframes glitch {
+            0% { transform: translate(0) }
+            20% { transform: translate(-1px, 1px) }
+            40% { transform: translate(-1px, -1px) }
+            60% { transform: translate(1px, 1px) }
+            80% { transform: translate(1px, -1px) }
+            100% { transform: translate(0) }
+        }
+
+        .hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.5rem, 4vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            max-width: 900px;
+            margin: 0 auto 1.5vh auto;
+            color: var(--text-heading);
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+            z-index: 2;
+        }
+
+        .dynamic-text-wrapper {
+            display: inline-block;
+            position: relative;
+            min-width: 320px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .dynamic-text {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            transform: translateX(-10px);
+            filter: blur(2px);
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            background: linear-gradient(to right, var(--primary-blue), var(--btn-magenta), var(--primary-blue));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShine 4s linear infinite;
+        }
+        @keyframes textShine {
+            to { background-position: 200% center; }
+        }
+
+        .dynamic-text.active {
+            opacity: 1;
+            transform: translateX(0);
+            filter: blur(0px);
+            position: relative;
+        }
+        .dynamic-text.exit {
+            opacity: 0;
+            transform: translateX(10px);
+            filter: blur(2px);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            font-weight: 500;
+            max-width: 700px;
+            line-height: 1.6;
+            margin: 0 auto 3vh auto;
+            color: var(--text-body);
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+            z-index: 2;
+        }
+
+        /* BUTTONS */
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+            z-index: 3;
+            margin-bottom: 3vh;
+        }
+
+        .btn-magnet-wrapper {
+            position: relative;
+            display: inline-block;
+            padding: 8px; 
+        }
+
+        .btn {
+            position: relative;
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: transform 0.2s ease-out, box-shadow 0.3s ease, background-color 0.3s ease;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.4), rgba(255,255,255,0));
+            transform: skewX(-25deg);
+            animation: btnShine 4s infinite;
+            z-index: 2;
+        }
+        @keyframes btnShine {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
+        }
+
+        .btn-primary {
+            background-color: var(--btn-magenta);
+            color: white;
+            border: 1px solid var(--btn-magenta);
+            box-shadow: 0 4px 12px rgba(162, 28, 175, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--btn-magenta-hover);
+            box-shadow: 0 8px 20px rgba(162, 28, 175, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--btn-magenta);
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--btn-magenta);
+            color: var(--btn-magenta-hover);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* SHOWCASE BORDER */
+        .showcase-wrapper {
+            position: relative;
+            width: 80%;
+            max-width: 1000px;
+            height: 40vh;
+            min-height: 250px;
+            z-index: 2;
+            animation: slideUpShowcase 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+            border-radius: 16px 16px 0 0;
+            padding: 2px 2px 0 2px;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            box-shadow: 0 -10px 40px rgba(37, 99, 235, 0.1);
+        }
+        
+        .showcase-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent 70%, #60a5fa 80%, #a21caf 100%);
+            animation: spinBorder 4s linear infinite;
+            z-index: -1;
+        }
+        @keyframes spinBorder {
+            100% { transform: rotate(360deg); }
+        }
+
+        .visual-showcase {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 14px 14px 0 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .window-header {
+            height: 40px;
+            background: #f1f5f9;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            gap: 8px;
+        }
+
+        .window-header .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .window-header .red { background: #ff5f56; }
+        .window-header .yellow { background: #ffbd2e; }
+        .window-header .green { background: #27c93f; }
+
+        .window-body {
+            display: flex;
+            height: 100%;
+        }
+
+        .editor-side {
+            flex: 1;
+            background: #0f172a;
+            padding: 20px;
+            color: #e2e8f0;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            text-align: left;
+            border-right: 1px solid #334155;
+            position: relative;
+        }
+        .editor-side .keyword { color: #c678dd; }
+        .editor-side .function { color: #61afef; }
+        .editor-side .string { color: #98c379; }
+        
+        .typing-line {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #61afef;
+            animation: typing 3s steps(40, end) infinite, blink-caret .75s step-end infinite;
+        }
+
+        .ui-side {
+            flex: 1;
+            background: #f8fafc;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .ui-skeleton-header { width: 40%; height: 20px; background: #e2e8f0; border-radius: 4px; }
+        .ui-skeleton-chart { 
+            flex: 1; 
+            background: white; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 8px; 
+            display: flex;
+            align-items: flex-end;
+            padding: 10px;
+            gap: 5px;
+        }
+        .bar {
+            flex: 1;
+            background: #e2e8f0;
+            border-radius: 4px 4px 0 0;
+            transform-origin: bottom;
+            animation: growBar 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transition: background-color 0.3s;
+        }
+        .ui-skeleton-chart:hover .bar { background: #cbd5e1; }
+        .ui-skeleton-chart:hover .bar:hover { background: var(--primary-blue); cursor: pointer; }
+        .bar.active { background: var(--primary-blue); }
+        .bar:nth-child(1) { height: 40%; animation-delay: 0.8s; }
+        .bar:nth-child(2) { height: 65%; animation-delay: 1.0s; }
+        .bar:nth-child(3) { height: 45%; animation-delay: 1.2s; }
+        .bar:nth-child(4) { height: 90%; animation-delay: 1.4s; }
+        .bar:nth-child(5) { height: 75%; animation-delay: 1.6s; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideUpShowcase {
+            from { opacity: 0; transform: translateY(100px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes typing {
+            0% { width: 0 }
+            50% { width: 100% }
+            100% { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #61afef; }
+        }
+        @keyframes growBar {
+            from { transform: scaleY(0); opacity: 0; }
+            to { transform: scaleY(1); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .showcase-wrapper { width: 95%; }
+            .window-body { flex-direction: column; }
+            .editor-side { border-right: none; border-bottom: 1px solid #334155; }
+        }
+        @media (max-width: 600px) {
+            .hero-buttons { flex-direction: column; width: 100%; max-width: 300px; }
+            .btn-magnet-wrapper { width: 100%; padding: 4px 0; }
+            .btn { width: 100%; }
+            .dynamic-text-wrapper { min-width: 250px; }
+            .hero-title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero" id="hero">
+        <!-- NEW: Interactive Canvas Background -->
+        <canvas id="network-canvas"></canvas>
+        
+        <div class="cursor-glow" id="cursor-glow"></div>
+
+        <div class="hero-content-wrapper">
+            <div class="hero-text-content">
+                <div class="badge">
+                    <i class="fa-solid fa-building"></i>
+                    <span>ISO 9001 & 27001 Certified</span>
+                </div>
+                
+                <h1 class="hero-title" id="tilt-target">
+                    Empowering business through <br>innovative
+                    <span class="dynamic-text-wrapper">
+                        <span class="dynamic-text active">software.</span>
+                        <span class="dynamic-text">mobile apps.</span>
+                        <span class="dynamic-text">ERP solutions.</span>
+                    </span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    e-Biz Technocrats provides enterprise-grade IT solutions, custom software development, and digital strategies to scale your business globally.
+                </p>
+                
+                <div class="hero-buttons">
+                    <div class="btn-magnet-wrapper">
+                        <a href="#" class="btn btn-primary magnetic-btn">Start Your Project</a>
+                    </div>
+                    <div class="btn-magnet-wrapper">
+                        <a href="#" class="btn btn-secondary magnetic-btn">Explore Solutions</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-graphic-content">
+                <!-- Interactive Service Orbit -->
+                <div class="orbit-container" id="parallax-showcase">
+                    <!-- Center E-Biz Logo -->
+                    <div class="orbit-center">
+                        <img src="assets/images/ebiz_logo.png" alt="e-Biz Technocrats Logo" class="orbit-logo">
+                        <div class="orbit-center-glow"></div>
+                    </div>
+                    
+                    <!-- Orbit rings -->
+                    <div class="orbit-ring orbit-ring-1"></div>
+                    <div class="orbit-ring orbit-ring-2"></div>
+                    
+                    <!-- Orbiting Nodes -->
+                    <div class="orbit-wrapper">
+                        <!-- Node 1: Web Development -->
+                        <div class="orbit-node" data-index="0" data-service="Web Development" data-desc="We design and build robust, high-performance web applications, custom databases, and e-commerce platforms tailored to scale your business.">
+                            <div class="node-content">
+                                <div class="node-icon"><i class="fa-solid fa-code"></i></div>
+                                <span class="node-label">Web Development</span>
+                            </div>
+                        </div>
+                        <!-- Node 2: Mobile Apps -->
+                        <div class="orbit-node" data-index="1" data-service="Mobile Apps" data-desc="Delivering intuitive, native and cross-platform iOS and Android mobile applications powered by clean architectures and secure APIs.">
+                            <div class="node-content">
+                                <div class="node-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                                <span class="node-label">Mobile Apps</span>
+                            </div>
+                        </div>
+                        <!-- Node 3: AI Solutions -->
+                        <div class="orbit-node" data-index="2" data-service="AI Solutions" data-desc="Integrating advanced machine learning, predictive analytics, intelligent automation, and conversational AI agents into your products.">
+                            <div class="node-content">
+                                <div class="node-icon"><i class="fa-solid fa-brain"></i></div>
+                                <span class="node-label">AI Solutions</span>
+                            </div>
+                        </div>
+                        <!-- Node 4: UI/UX Design -->
+                        <div class="orbit-node" data-index="3" data-service="UI/UX Design" data-desc="Crafting user-centered interfaces and seamless experience strategies through prototyping, layout design, and user journey optimization.">
+                            <div class="node-content">
+                                <div class="node-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                                <span class="node-label">UI/UX Design</span>
+                            </div>
+                        </div>
+                        <!-- Node 5: Cloud Services -->
+                        <div class="orbit-node" data-index="4" data-service="Cloud Services" data-desc="Architecting secure, auto-scaling cloud infrastructures on AWS, Azure, and Google Cloud, featuring 99.9% uptime SLA.">
+                            <div class="node-content">
+                                <div class="node-icon"><i class="fa-solid fa-cloud"></i></div>
+                                <span class="node-label">Cloud Services</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Description Panel -->
+                    <div class="orbit-info-panel">
+                        <h4 class="orbit-info-title">Hover a service to explore</h4>
+                        <p class="orbit-info-desc">Discover our range of custom software development and enterprise-grade solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // NETWORK CANVAS PARTICLES
+        const canvas = document.getElementById('network-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles;
+
+        function initParticles() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            particles = [];
+            // Reduced particle count for cleaner enterprise look
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4,
+                    radius: Math.random() * 1.5 + 0.5
+                });
+            }
+        }
+
+        let mouse = { x: -1000, y: -1000 };
+        window.addEventListener('mousemove', e => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        window.addEventListener('mouseout', () => {
+            mouse.x = -1000;
+            mouse.y = -1000;
+        });
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+            
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > width) p.vx *= -1;
+                if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(37, 99, 235, 0.3)';
+                ctx.fill();
+
+                // Connect to mouse
+                let dx = mouse.x - p.x;
+                let dy = mouse.y - p.y;
+                let dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 150) {
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.strokeStyle = `rgba(37, 99, 235, ${(1 - dist/150) * 0.5})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+
+                // Connect to others
+                for (let j = i + 1; j < particles.length; j++) {
+                    let p2 = particles[j];
+                    let dx2 = p.x - p2.x;
+                    let dy2 = p.y - p2.y;
+                    let dist2 = Math.sqrt(dx2*dx2 + dy2*dy2);
+                    if (dist2 < 100) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(37, 99, 235, ${(1 - dist2/100) * 0.15})`;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+        window.addEventListener('resize', initParticles);
+
+        // DYNAMIC TEXT EFFECT
+        const words = document.querySelectorAll('.dynamic-text');
+        let currentWordIndex = 0;
+
+        function changeWord() {
+            const currentWord = words[currentWordIndex];
+            currentWord.classList.remove('active');
+            currentWord.classList.add('exit');
+
+            currentWordIndex = (currentWordIndex + 1) % words.length;
+            
+            const nextWord = words[currentWordIndex];
+            nextWord.classList.remove('exit');
+            nextWord.classList.add('active');
+        }
+
+        setInterval(changeWord, 2500);
+
+        // CURSOR GLOW & PARALLAX
+        const hero = document.getElementById('hero');
+        const cursorGlow = document.getElementById('cursor-glow');
+        const tiltTarget = document.getElementById('tilt-target');
+        const showcase = document.getElementById('parallax-showcase');
+
+        hero.addEventListener('mouseenter', () => {
+            cursorGlow.style.opacity = '1';
+        });
+
+        hero.addEventListener('mousemove', (e) => {
+            const rect = hero.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            cursorGlow.style.left = `${x}px`;
+            cursorGlow.style.top = `${y}px`;
+
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 80;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 80;
+            tiltTarget.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            showcase.style.transform = `rotateY(${xAxis * -0.5}deg) rotateX(${yAxis * -0.5}deg)`;
+
+            // Track mouse position on showcase for dynamic glow overlay
+            if (showcase) {
+                const sRect = showcase.getBoundingClientRect();
+                const sx = ((e.clientX - sRect.left) / sRect.width) * 100;
+                const sy = ((e.clientY - sRect.top) / sRect.height) * 100;
+                showcase.style.setProperty('--mouse-x', `${sx}%`);
+                showcase.style.setProperty('--mouse-y', `${sy}%`);
+            }
+        });
+
+        hero.addEventListener('mouseleave', () => {
+            cursorGlow.style.opacity = '0';
+            tiltTarget.style.transform = `rotateY(0deg) rotateX(0deg)`;
+            showcase.style.transform = `rotateY(0deg) rotateX(0deg)`;
+        });
+
+        // SERVICE ORBIT HOVER DETAILS
+        const orbitNodes = document.querySelectorAll('.orbit-node');
+        const orbitTitle = document.querySelector('.orbit-info-title');
+        const orbitDesc = document.querySelector('.orbit-info-desc');
+
+        if (orbitNodes && orbitTitle && orbitDesc) {
+            orbitNodes.forEach(node => {
+                node.addEventListener('mouseenter', () => {
+                    const serviceName = node.getAttribute('data-service');
+                    const serviceDesc = node.getAttribute('data-desc');
+                    
+                    orbitTitle.style.opacity = '0';
+                    orbitDesc.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        orbitTitle.textContent = serviceName;
+                        orbitDesc.textContent = serviceDesc;
+                        orbitTitle.style.opacity = '1';
+                        orbitDesc.style.opacity = '1';
+                    }, 150);
+                });
+            });
+        }
+
+        // MAGNETIC BUTTONS
+        const magnetWrappers = document.querySelectorAll('.btn-magnet-wrapper');
+
+        magnetWrappers.forEach((wrapper) => {
+            const btn = wrapper.querySelector('.magnetic-btn');
+            
+            wrapper.addEventListener('mousemove', (e) => {
+                const position = wrapper.getBoundingClientRect();
+                const x = e.clientX - position.left - position.width / 2;
+                const y = e.clientY - position.top - position.height / 2;
+                btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            });
+
+            wrapper.addEventListener('mouseleave', () => {
+                btn.style.transform = `translate(0px, 0px)`;
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
