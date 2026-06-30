@@ -4,7 +4,7 @@ A modern, responsive corporate website developed for **e-Biz Technocrats** to sh
 
 ## 🌐 Live Demo
 
-Website link : ettps://e-biz-technocrats-website.vercel.app
+Website link : https://e-biz-technocrats-website.vercel.app
 
 ## 📌 Features
 
