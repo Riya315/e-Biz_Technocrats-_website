@@ -1180,6 +1180,9 @@ background-clip: text;
     padding: 32px 0;
     background: var(--bg-surface);
 }
+.case-studies-section .container{
+    max-width: 1180px;
+}
 
 .cases-grid {
     display: grid;
@@ -1188,8 +1191,8 @@ background-clip: text;
 }
 
 .case-card {
-    border-radius: var(--radius-md);
-    padding: 12px 16px;
+    border-radius: 12px
+    padding: 10px 12px;
     display: flex;
     flex-direction: column;
     transition: var(--transition-slow);
@@ -1199,11 +1202,23 @@ background-clip: text;
 }
 
 .case-card.mint-grad {
-    background: var(--grad-mint-blue);
+    background:  linear-gradient(
+    135deg,
+    #F8FAFC 0%,
+    #E0F2FE 30%,
+    #EDE9FE 65%,
+    #FCE7F3 100%
+);
 }
 
 .case-card.purple-grad {
-    background: var(--grad-purple-pink);
+    background: linear-gradient(
+    135deg,
+    #F3F8FF 0%,
+    #E3F2FD 40%,
+    #F3E8FF 75%,
+    #FDF2F8 100%
+);
 }
 
 .case-card:hover {
@@ -1214,11 +1229,11 @@ background-clip: text;
 /* Case study image – smaller size with theme-color tint */
 .case-image-wrap {
     width: 100%;
-    max-height: 120px;
+    max-height: 90px;
     border-radius: var(--radius-sm);
     overflow: hidden;
     position: relative;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .case-image-wrap::after {
@@ -1233,7 +1248,7 @@ background-clip: text;
 
 .case-img {
     width: 100%;
-    height: 120px;
+    height: 90px;
     object-fit: cover;
     object-position: center top;
     display: block;
@@ -1257,16 +1272,16 @@ background-clip: text;
 .client-badge {
     background: var(--color-light);
     color: var(--color-text-dark);
-    padding: 6px 14px;
+    padding: 4px 10px;
     border-radius: var(--radius-full);
-    font-size: 0.8rem;
+    font-size: 0.68rem;
     font-weight: 700;
     box-shadow: var(--shadow-sm);
 }
 
 .case-icon-wrap {
-    width: 44px;
-    height: 44px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background: var(--color-light);
     display: flex;
@@ -1274,6 +1289,7 @@ background-clip: text;
     justify-content: center;
     color: var(--color-primary);
     box-shadow: var(--shadow-sm);
+       font-size: 0.8rem;
 }
 
 .case-card h3 {
@@ -1284,9 +1300,9 @@ background-clip: text;
 
 .case-card p {
     color: var(--text-secondary);
-    font-size: 0.75rem;
-    margin-bottom: 6px;
-    line-height: 1.4;
+    font-size: 0.70rem;
+    margin-bottom: 3px;
+    line-height: 1.3;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -1296,7 +1312,7 @@ background-clip: text;
 .tech-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 3px;
     margin-top: auto;
     margin-bottom: 8px;
 }
@@ -1305,9 +1321,9 @@ background-clip: text;
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(4px);
     border: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 4px 12px;
+    padding: 3px 8px;
     border-radius: var(--radius-sm);
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     font-weight: 700;
     color: var(--color-text-muted);
 }
@@ -1318,8 +1334,8 @@ background-clip: text;
     border: 1px solid var(--border-color);
     width: fit-content;
     box-shadow: var(--shadow-sm);
-    padding: 10px 20px;
-    font-size: 0.85rem;
+    padding: 7px 14px;
+    font-size: 0.75rem;
 }
 
 .btn-case:hover {
@@ -1506,7 +1522,7 @@ background-clip: text;
 }
 
 .blog-image {
-    height: 200px;
+    height: 150px; /* Reduced from 200px for a more compact card */
     background: var(--bg-surface);
     position: relative;
     display: flex;
@@ -1535,7 +1551,7 @@ background-clip: text;
 }
 
 .blog-body {
-    padding: 24px;
+    padding: 16px; /* Reduced from 24px for tighter spacing */
 }
 
 .blog-date {
@@ -1549,21 +1565,21 @@ background-clip: text;
 }
 
 .blog-body h3 {
-    font-size: 1.15rem;
+    font-size: 1rem; /* Slightly smaller heading */
     color: var(--text-primary);
     margin-bottom: 12px;
     line-height: 1.4;
 }
 
 .blog-body p {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
+    font-size: 0.75rem; /* Smaller paragraph text */
+    color: var(--color-text-muted);
     margin-bottom: 20px;
     line-height: 1.6;
 }
 
 .read-more {
-    font-size: 0.85rem;
+    font-size: 0.75rem; /* Smaller read more link */
     font-weight: 700;
     color: var(--color-primary);
     display: inline-flex;
@@ -3052,14 +3068,14 @@ body.dark-theme .partner-card:hover img {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 0.95rem;
+    font-size: 0.8rem; /* Reduced from 0.95rem for smaller text */
     color: var(--text-primary);
     font-weight: 500;
 }
 
 .services-offering-item i {
     color: var(--color-primary);
-    font-size: 1rem;
+    font-size: 0.9rem; /* Slightly smaller icon */
 }
 
 /* Consultancy grid subpages */
@@ -4158,7 +4174,7 @@ body.dark-theme .partner-card:hover img {
 }
 
 .life-ebiz-section .section-tagline {
-    background: linear-gradient(135deg, #00fdff, #62ce72);
+    
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
